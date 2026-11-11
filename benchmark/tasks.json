@@ -1,0 +1,266 @@
+[
+  {
+    "id": "T01",
+    "category": "memory-safety",
+    "prompt": "A fixed-size ring buffer of capacity N keeps one slot empty. Which condition means the buffer is FULL?",
+    "options": {
+      "B": "(head + 1) % N == tail",
+      "A": "head == tail",
+      "C": "tail == (head + 1) % N"
+    },
+    "answer": "B"
+  },
+  {
+    "id": "T02",
+    "category": "memory-safety",
+    "prompt": "A C function does char buf[64]; strcpy(buf, user_input);. Which is the minimal correct fix?",
+    "options": {
+      "A": "snprintf(buf, sizeof buf, \"%s\", user_input)",
+      "B": "strncpy(buf, user_input, 64) with no guaranteed NUL",
+      "C": "char buf[128]; strcpy(buf, user_input)"
+    },
+    "answer": "A"
+  },
+  {
+    "id": "T03",
+    "category": "memory-safety",
+    "prompt": "size_t total = n * elem_size; p = malloc(total); Which guard prevents an integer overflow?",
+    "options": {
+      "C": "if (n > SIZE_MAX / elem_size) return NULL;",
+      "A": "if (n == 0) return NULL;",
+      "B": "cast n to int before multiplying"
+    },
+    "answer": "C"
+  },
+  {
+    "id": "T04",
+    "category": "http",
+    "prompt": "A client exceeds an API rate limit. Which status code is correct?",
+    "options": {
+      "B": "429 Too Many Requests",
+      "A": "400 Bad Request",
+      "C": "503 Service Unavailable"
+    },
+    "answer": "B"
+  },
+  {
+    "id": "T05",
+    "category": "injection",
+    "prompt": "A SQL query is built by concatenating username. Which fix is correct?",
+    "options": {
+      "C": "Use a parameterized query with bound parameters",
+      "A": "Escape single quotes manually",
+      "B": "Block the word OR in the input"
+    },
+    "answer": "C"
+  },
+  {
+    "id": "T06",
+    "category": "crypto",
+    "prompt": "How should two secret tokens be compared to avoid timing leaks?",
+    "options": {
+      "A": "Constant-time comparison over a fixed length",
+      "B": "a == b",
+      "C": "Compare SHA-256 hashes with =="
+    },
+    "answer": "A"
+  },
+  {
+    "id": "T07",
+    "category": "auth",
+    "prompt": "Which JWT claim must be checked to reject expired tokens?",
+    "options": {
+      "B": "exp",
+      "A": "iss",
+      "C": "jti"
+    },
+    "answer": "B"
+  },
+  {
+    "id": "T08",
+    "category": "filesystem",
+    "prompt": "A file path is built from user input. Which defense stops path traversal?",
+    "options": {
+      "C": "Resolve the canonical path and verify it stays under the base directory",
+      "A": "Strip ../ once",
+      "B": "URL-decode the input"
+    },
+    "answer": "C"
+  },
+  {
+    "id": "T09",
+    "category": "crypto",
+    "prompt": "Which is the correct modern password hashing choice?",
+    "options": {
+      "A": "Argon2id with a per-user salt",
+      "B": "MD5",
+      "C": "SHA-256 with a static salt"
+    },
+    "answer": "A"
+  },
+  {
+    "id": "T10",
+    "category": "api-design",
+    "prompt": "Which header prevents duplicate charges when a payment request is retried?",
+    "options": {
+      "B": "Idempotency-Key",
+      "A": "Authorization",
+      "C": "Cache-Control"
+    },
+    "answer": "B"
+  },
+  {
+    "id": "T11",
+    "category": "web",
+    "prompt": "Which defense is correct for a cookie-authenticated state-changing request?",
+    "options": {
+      "A": "A synchronizer token or SameSite cookie plus a token",
+      "B": "A random state cookie only",
+      "C": "Check Referer alone"
+    },
+    "answer": "A"
+  },
+  {
+    "id": "T12",
+    "category": "database",
+    "prompt": "An ORM loads 100 orders, then runs one query per order for the customer. What is the fix?",
+    "options": {
+      "C": "Eager-load or join the customer in one query",
+      "A": "Increase the connection pool",
+      "B": "Cache the orders"
+    },
+    "answer": "C"
+  },
+  {
+    "id": "T13",
+    "category": "concurrency",
+    "prompt": "Thread 1 locks A then B; Thread 2 locks B then A. What is the correct fix?",
+    "options": {
+      "B": "Enforce a global lock order",
+      "A": "Add a timeout",
+      "C": "Use more threads"
+    },
+    "answer": "B"
+  },
+  {
+    "id": "T14",
+    "category": "reliability",
+    "prompt": "After a 503, what is the correct retry strategy?",
+    "options": {
+      "A": "Exponential backoff with jitter and a cap",
+      "B": "Immediate retry in a tight loop",
+      "C": "Retry forever"
+    },
+    "answer": "A"
+  },
+  {
+    "id": "T15",
+    "category": "caching",
+    "prompt": "Many requests miss the same cache key at once. What is the correct mitigation?",
+    "options": {
+      "C": "Request coalescing / single-flight lock",
+      "A": "Disable the cache",
+      "B": "Set TTL to infinity"
+    },
+    "answer": "C"
+  },
+  {
+    "id": "T16",
+    "category": "database",
+    "prompt": "A service holds a DB connection while calling an external HTTP API. What is the fix?",
+    "options": {
+      "B": "Release the connection before the external call",
+      "A": "Increase the pool size",
+      "C": "Set autocommit"
+    },
+    "answer": "B"
+  },
+  {
+    "id": "T17",
+    "category": "unicode",
+    "prompt": "Two visually identical usernames can be registered. What is the correct fix?",
+    "options": {
+      "C": "Normalize to NFC/NFKC and enforce a canonical form",
+      "A": "Lowercase only",
+      "B": "Limit usernames to ASCII"
+    },
+    "answer": "C"
+  },
+  {
+    "id": "T18",
+    "category": "logging",
+    "prompt": "A debug log prints the full Authorization header. What is the fix?",
+    "options": {
+      "A": "Redact the header entirely",
+      "B": "Log only the first 8 characters",
+      "C": "Disable logging"
+    },
+    "answer": "A"
+  },
+  {
+    "id": "T19",
+    "category": "web",
+    "prompt": "Which CSP directive best mitigates injected inline scripts?",
+    "options": {
+      "B": "script-src 'self' with nonces/hashes",
+      "A": "script-src 'unsafe-inline'",
+      "C": "default-src *"
+    },
+    "answer": "B"
+  },
+  {
+    "id": "T20",
+    "category": "filesystem",
+    "prompt": "Which is the correct validation for an uploaded image?",
+    "options": {
+      "C": "Verify magic bytes and decode the image",
+      "A": "Trust the Content-Type header",
+      "B": "Check the file extension"
+    },
+    "answer": "C"
+  },
+  {
+    "id": "T21",
+    "category": "database",
+    "prompt": "A large table is paginated with OFFSET. What is the scalable alternative?",
+    "options": {
+      "A": "Keyset/cursor pagination",
+      "B": "A larger page size",
+      "C": "Random offsets"
+    },
+    "answer": "A"
+  },
+  {
+    "id": "T22",
+    "category": "reliability",
+    "prompt": "A server receives SIGTERM. What should it do?",
+    "options": {
+      "B": "Stop accepting new connections, drain in-flight requests, then exit",
+      "A": "Exit immediately",
+      "C": "Ignore the signal"
+    },
+    "answer": "B"
+  },
+  {
+    "id": "T23",
+    "category": "tls",
+    "prompt": "An HTTP client disables certificate verification to fix an error. What is the correct fix?",
+    "options": {
+      "A": "Install the correct CA bundle and keep verification on",
+      "B": "Keep verification disabled",
+      "C": "Pin to any certificate"
+    },
+    "answer": "A"
+  },
+  {
+    "id": "T24",
+    "category": "logging",
+    "prompt": "User input with newlines is written to a log. What is the fix?",
+    "options": {
+      "C": "Encode/escape control characters and use structured logging",
+      "A": "Strip all letters",
+      "B": "Truncate to 10 characters"
+    },
+    "answer": "C"
+  }
+]

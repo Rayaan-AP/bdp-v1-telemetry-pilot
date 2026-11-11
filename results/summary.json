@@ -1,0 +1,23 @@
+{
+  "n_pairs": 24,
+  "n_runs": 48,
+  "tasks": 24,
+  "reduction_mean_pct": 83.8,
+  "reduction_median_pct": 84.16,
+  "reduction_ci95": [
+    83.0,
+    84.57
+  ],
+  "prose_tokens_mean": 753.3,
+  "bdp_tokens_mean": 121.2,
+  "prose_accuracy_pct": 100.0,
+  "bdp_accuracy_pct": 100.0,
+  "schema_ok_pct": 100.0,
+  "prose_latency_mean_s": 197.7,
+  "bdp_latency_mean_s": 141.5,
+  "prose_errors": 0,
+  "bdp_errors": 0,
+  "prose_correct": 24,
+  "bdp_correct": 24,
+  "wilcoxon_p": 1.1920928955078125e-07
+}
